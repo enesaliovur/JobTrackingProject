@@ -1,0 +1,44 @@
+﻿@model List<DutyViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@if (Model.Count != 0)
+{
+    <a asp-action="AddDuty" class="btn btn-sm btn-dark my-2"><i class="fas fa-plus mr-2"></i>Görev Ekle</a>
+    <table class="table table-sm table-hover" >
+        <thead>
+            <th>Ad</th>
+            <th>Açıklama</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>Aciliyet </th>
+            <th>İşlem</th>
+        </thead>
+            <tbody>
+
+                @foreach (var duty in Model)
+                {
+                    <tr>
+                        <td>@duty.Name</td>
+                        <td>@duty.Description</td>
+                        <td>@duty.CreationDate.ToString("D")</td>
+                        <td>@duty.Importance.Description</td>
+                        <td>
+                            <a asp-action="UpdateDuty" asp-route-id="@duty.Id" class="btn btn-sm btn-success"><i class="fas fa-edit mr-2"></i>Düzenle</a>
+                            <a asp-action="DeleteDuty" asp-route-id="@duty.Id" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+}
+else
+{
+    <div class="pt-3 text-center mt-3">
+        <p>Sistem Kayıtlı Görev Bulunmamaktadır</p>
+        <a asp-action="AddDuty" class="btn btn-sm btn-info">Görev Ekle</a>
+    </div>
+}

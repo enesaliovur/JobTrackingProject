@@ -1,0 +1,80 @@
+﻿@model List<ListDutyViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+    int index = 0;
+
+}
+
+
+
+@foreach (var duty in Model)
+{
+    index++;
+    <div class="card mt-3">
+        <h5 class="card-header"><span>Görev:</span>@duty.Name</h5>
+        <div class="card-body">
+            <h5 class="card-title"><span class="text-danger">Aciliyet Durumu:</span>@duty.Importance.Description</h5>
+            <p class="card-text" style="font-size:17px;">Açıklama:@duty.Description</p>
+
+
+            <p class="text-right">
+                @if (duty.Reports.Count > 0)
+                {
+                    <a class="btn btn-light btn-sm" data-toggle="collapse" href="#collapseExample-@index" role="button" aria-expanded="false" aria-controls="collapseExample">
+
+                        Raporlar<i class="fas fa-caret-down ml-2"></i><span class="badge badge-danger ml-2">@duty.Reports.Count</span>
+                    </a>
+                }
+
+
+
+            </p>
+
+
+
+            <div class="collapse" id="collapseExample-@index">
+
+                <table class="table table-hover table-bordered table-sm">
+                    <tr>
+                        <th>Ad</th>
+                        <th>Tanım</th>
+
+                    </tr>
+
+                    @foreach (var report in duty.Reports)
+                    {
+                        <tr>
+                            <td>@report.Description</td>
+                            <td>@report.Details</td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+}
+
+<nav aria-label="" class="float-right mt-2">
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.totalPage; i++)
+        {
+            <li class="page-item  @(ViewBag.activePage==i?"active":"")">
+                <a class="page-link" asp-action="Index" asp-route-activePage="@i">@i</a>
+            </li>
+        }
+    </ul>
+
+</nav>
+
+

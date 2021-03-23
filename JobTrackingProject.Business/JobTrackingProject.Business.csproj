@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.5.3" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JobTrackingProject.DataAccess\JobTrackingProject.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

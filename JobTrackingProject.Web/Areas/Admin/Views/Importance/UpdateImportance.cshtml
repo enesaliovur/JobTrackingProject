@@ -1,0 +1,25 @@
+﻿@model UpdateImportanceViewModel
+@{
+    ViewData["Title"] = "UpdateUrgency";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form asp-action="UpdateImportance"  class="w-50 mx-auto p-3 " method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Description"> </label>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <input asp-for="Description" type="text" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-sm btn-info">Kaydet</button>
+</form>
+
+<div asp-validation-summary="ModelOnly"></div>
+@section Validation{
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+
+

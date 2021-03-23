@@ -1,0 +1,41 @@
+﻿@model List<ImportanceViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@if (Model.Count != 0)
+{
+<a asp-action="AddImportance" asp-controller="Importance" class="btn btn-sm btn-dark my-2"><i class="fas fa-plus mr-2"></i>Aciliyet Ekle</a>
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Tanım</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var importance in Model)
+            {
+                <tr>
+                    <td>@importance.Description</td>
+                    <td>
+                        <a asp-action="UpdateImportance" asp-controller="Importance" asp-route-id="@importance.Id" class="btn btn-sm btn-success">Düzenle<i class="fas fa-edit ml-2"></i></a>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+    <div class="text-center  mt-4">
+        <p class="lead">Sistemde Kayıtlı Aciliyet Bulunmamaktadır</p>
+        <a asp-action="AddImportance" asp-controller="Importance" class="btn btn-sm btn-info my-2">ACİLİYET EKLE</a>
+    </div>
+}

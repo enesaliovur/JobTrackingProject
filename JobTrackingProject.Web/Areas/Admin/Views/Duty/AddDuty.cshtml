@@ -1,0 +1,35 @@
+﻿@model AddDutyViewModel
+@{
+    ViewData["Title"] = "AddDuty";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form asp-action="AddDuty" class="w-75 mx-auto p-4" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImportanceId"></label>
+        <span asp-validation-for="ImportanceId" class="text-danger"></span>
+        <select asp-for="ImportanceId" class="form-control" asp-items="ViewBag.Importances">
+
+            <option hidden value="-1">Seçiniz</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-sm  btn-warning" style="font-size:12px;">Kaydet</button>
+</form>
+
+
+@section Validation{
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

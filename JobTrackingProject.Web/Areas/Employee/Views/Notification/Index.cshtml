@@ -1,0 +1,29 @@
+﻿@model List<NotificationViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    @foreach (var notification in Model)
+    {
+        <form method="post" asp-action="Index" class="my-3" asp-route-id="@notification.Id">
+            <p>
+                
+                @notification.Description
+                <button type="submit" class="btn btn-sm btn-warning float-right">Okundu</button>
+            </p>
+        </form>
+        <hr />
+    }
+
+}
+else
+{
+    <div class="alert alert-light p-3 my-2">
+        <p class="lead">Okunmamış bilirim bulunmamaktadır</p>
+    </div>
+
+}
+
